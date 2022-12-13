@@ -47,6 +47,10 @@ const App = () => {
         } else if (eachWord.search(/[aeiou]/) === -1 && eachWord.includes('y')) {
           let indexOfY = eachWord.indexOf('y')
               return eachWord.slice(indexOfY,eachWord.length) + eachWord.slice(0,indexOfY) + "ay"
+        } else if (eachWord.search(/[aeiou]/) > 0) {
+          let firstVowel = vowelsArray[0]
+          let firstIndex = eachWord.indexOf(firstVowel)
+              return eachWord.slice(firstIndex, eachWord.length) + eachWord.slice(0,firstIndex) + 'ay'
         }
 
 
