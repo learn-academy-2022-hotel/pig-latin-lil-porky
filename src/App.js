@@ -38,9 +38,14 @@ const App = () => {
         // } 
 
         // if first vowel = u && letter before u = q, find index of u, splice up to u, add at end and add way
-
-
-        if (eachWord.search(/[aeiou]/) === 0) {
+        const punctuation =  !!eachWord.match(/[.,:!?]/)
+          if(punctuation && eachWord.search(/[aeiou]/) === 0){
+            let wordStartVowel = eachWord + 'way' 
+            let indexOfPunctuation = wordStartVowel.search(/[.,!?;]/)
+            console.log("******",indexOfPunctuation);
+            return wordStartVowel.slice(0, indexOfPunctuation) + wordStartVowel.slice(indexOfPunctuation + 1, wordStartVowel.length) + wordStartVowel.charAt(indexOfPunctuation)
+          }
+         else if (eachWord.search(/[aeiou]/) === 0) {
               return eachWord + 'way'
         } else if (vowelsArray[0] === 'u' && eachWord.includes('qu')) {
               return eachWord.slice(eachWord.indexOf(vowelsArray[0]) + 1, eachWord.length) + eachWord.slice(0, eachWord.indexOf(vowelsArray[0]) + 1) + 'ay'
@@ -51,18 +56,32 @@ const App = () => {
           let firstVowel = vowelsArray[0]
           let firstIndex = eachWord.indexOf(firstVowel)
               return eachWord.slice(firstIndex, eachWord.length) + eachWord.slice(0,firstIndex) + 'ay'
-        }
+        } 
+        // if()
+        // const punct = (string) => {
+        //   let punctuation = ".,!?;"
+        //   for(let i = 0; i < string.length; i++){
+        //     if(string.includes(punctuation)){
+        //       let indexOfPunctuation = string.search(/[.,!?;]/)
+        //      return string.slice(0, indexOfPunctuation) + string.slice(indexOfPunctuation + 1, string.length) + string.charAt(indexOfPunctuation)
+        //     } 
+  
+        //   }
+        // }
+        
+// ban!ana slice[0, indexOfPunctuation] + [indexOfPunctuation + 1, string.length] + string.charAt[indexOfPunction]
 
-
+// find punctuation with search returns index 
         // console.log(eachWord.search(/[]/))
         // console.log(eachWord.search(/[aeiou]/))
         // --> input: banana output: 1
-        console.log(vowelsArray[0])
-
-      // ACTION ITEM: this return will be the output of your Pig Latin'd code
-      return eachWord
-    })
-
+        // console.log(vowelsArray[0])
+        // ACTION ITEM: this return will be the output of your Pig Latin'd code
+        
+        return eachWord
+        
+      })
+      
     // NO MODIFICATION NEEDED: once the code has been modified it gets joined from an array back to a string
     const translatedWords = translatedWordsArray.join(" ")
     console.log("translatedWords:", translatedWords)
