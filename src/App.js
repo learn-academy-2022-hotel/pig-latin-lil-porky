@@ -5,7 +5,7 @@ import butcherPigImage from './assets/butcherPig.jpeg'
 const App = () => {
 
   // ACTION ITEM: to make the development process easier there are some preassigned words in the input field, when you are ready for your full user experience delete the test words passed to useState and pass an empty string
-  const [userInput, setUserInput] = useState("apple through queen squeal fry fluent")
+  const [userInput, setUserInput] = useState("")
   const [inputTranslated, setInputTranslated] = useState("")
 
   // ACTION ITEM: the "myPigLatinCodeHere" function is where you will put your logic to translate the sentence entered by the user into Pig Latin
@@ -18,7 +18,7 @@ const App = () => {
     // NO MODIFICATION NEEDED: now that we have an array of words, we can map over the array and look at each word
     const translatedWordsArray = arrayOfUserInput.map(eachWord => {
       console.log("eachWord:", eachWord)
-
+      
       // NO MODIFICATION NEEDED: this code will look at each word and identify the vowels
       const vowelsArray = eachWord.split("").filter(vowel => {
         return (
@@ -30,10 +30,27 @@ const App = () => {
         )
       })
       console.log("vowelsArray:", vowelsArray)
-
+      // --> [vowels]
       // ACTION ITEM: your Pig Latin logic goes here!
+        // if (eachWord[0] === 'a' || eachWord[0] === 'e' || eachWord[0] === 'i' || eachWord[0] === 'o' || eachWord[0] === 'u') {
+        //   console.log(eachWord[0])
+        //   return eachWord + 'way'
+        // } 
 
-    
+        // if first vowel = u && letter before u = q, find index of u, splice up to u, add at end and add way
+
+
+        if (eachWord.search(/[aeiou]/) === 0) {
+              return eachWord + 'way'
+        } else if (vowelsArray[0] === 'u' && eachWord.includes('qu')) {
+              return eachWord.slice(eachWord.indexOf(vowelsArray[0]) + 1, eachWord.length) + eachWord.slice(0, eachWord.indexOf(vowelsArray[0]) + 1) + 'ay'
+        }
+
+
+        // console.log(eachWord.search(/[]/))
+        // console.log(eachWord.search(/[aeiou]/))
+        // --> input: banana output: 1
+        console.log(vowelsArray[0])
 
       // ACTION ITEM: this return will be the output of your Pig Latin'd code
       return eachWord
@@ -42,6 +59,7 @@ const App = () => {
     // NO MODIFICATION NEEDED: once the code has been modified it gets joined from an array back to a string
     const translatedWords = translatedWordsArray.join(" ")
     console.log("translatedWords:", translatedWords)
+    // --> final output
 
     // NO MODIFICATION NEEDED: this will update the inputTranslated variable in state
     setInputTranslated(translatedWords)
