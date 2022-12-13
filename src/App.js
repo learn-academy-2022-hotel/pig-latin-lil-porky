@@ -43,20 +43,34 @@ const App = () => {
             let wordStartVowel = eachWord + 'way' 
             let indexOfPunctuation = wordStartVowel.search(/[.,!?;]/)
             console.log("******",indexOfPunctuation);
-            return wordStartVowel.slice(0, indexOfPunctuation) + wordStartVowel.slice(indexOfPunctuation + 1, wordStartVowel.length) + wordStartVowel.charAt(indexOfPunctuation)
-          }
-         else if (eachWord.search(/[aeiou]/) === 0) {
+              return wordStartVowel.slice(0, indexOfPunctuation) + wordStartVowel.slice(indexOfPunctuation + 1, wordStartVowel.length) + wordStartVowel.charAt(indexOfPunctuation)
+          } else if (punctuation && vowelsArray[0] === 'u' && eachWord.includes('qu')) {
+            let wordWithQu = eachWord.slice(eachWord.indexOf(vowelsArray[0]) + 1, eachWord.length) + eachWord.slice(0, eachWord.indexOf(vowelsArray[0]) + 1) + 'ay'
+            let indexOfPunctuation2 = wordWithQu.search(/[.,!?;]/)
+              return wordWithQu.slice(0, indexOfPunctuation2) + wordWithQu.slice(indexOfPunctuation2 + 1, wordWithQu.length) + wordWithQu.charAt(indexOfPunctuation2)
+          } else if (punctuation && eachWord.search(/[aeiou]/) === -1 && eachWord.includes('y')) {
+            let indexOfY = eachWord.indexOf('y')
+            let wordWithVowelY = eachWord.slice(indexOfY,eachWord.length) + eachWord.slice(0,indexOfY) + "ay"
+            let indexOfPunctuation3 = wordWithVowelY.search(/[.,!?;]/)
+              return wordWithVowelY.slice(0, indexOfPunctuation3) + wordWithVowelY.slice(indexOfPunctuation3 + 1, wordWithVowelY.length) + wordWithVowelY.charAt(indexOfPunctuation3)
+          } else if (punctuation && eachWord.search(/[aeiou]/) > 0) {
+            let firstVowel = vowelsArray[0]
+            let firstIndex = eachWord.indexOf(firstVowel)
+            let normalWord = eachWord.slice(firstIndex, eachWord.length) + eachWord.slice(0,firstIndex) + 'ay'
+            let indexOfPunctuation4 = normalWord.search(/[.,!?;]/)
+              return normalWord.slice(0, indexOfPunctuation4) + normalWord.slice(indexOfPunctuation4 + 1, normalWord.length) + normalWord.charAt(indexOfPunctuation4)
+          } else if (eachWord.search(/[aeiou]/) === 0) {
               return eachWord + 'way'
-        } else if (vowelsArray[0] === 'u' && eachWord.includes('qu')) {
+          } else if (vowelsArray[0] === 'u' && eachWord.includes('qu')) {
               return eachWord.slice(eachWord.indexOf(vowelsArray[0]) + 1, eachWord.length) + eachWord.slice(0, eachWord.indexOf(vowelsArray[0]) + 1) + 'ay'
-        } else if (eachWord.search(/[aeiou]/) === -1 && eachWord.includes('y')) {
+          } else if (eachWord.search(/[aeiou]/) === -1 && eachWord.includes('y')) {
           let indexOfY = eachWord.indexOf('y')
               return eachWord.slice(indexOfY,eachWord.length) + eachWord.slice(0,indexOfY) + "ay"
-        } else if (eachWord.search(/[aeiou]/) > 0) {
+          } else if (eachWord.search(/[aeiou]/) > 0) {
           let firstVowel = vowelsArray[0]
           let firstIndex = eachWord.indexOf(firstVowel)
               return eachWord.slice(firstIndex, eachWord.length) + eachWord.slice(0,firstIndex) + 'ay'
-        } 
+          } 
         // if()
         // const punct = (string) => {
         //   let punctuation = ".,!?;"
