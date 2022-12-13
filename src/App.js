@@ -44,6 +44,9 @@ const App = () => {
               return eachWord + 'way'
         } else if (vowelsArray[0] === 'u' && eachWord.includes('qu')) {
               return eachWord.slice(eachWord.indexOf(vowelsArray[0]) + 1, eachWord.length) + eachWord.slice(0, eachWord.indexOf(vowelsArray[0]) + 1) + 'ay'
+        } else if (eachWord.search(/[aeiou]/) === -1 && eachWord.includes('y')) {
+          let indexOfY = eachWord.indexOf('y')
+              return eachWord.slice(indexOfY,eachWord.length) + eachWord.slice(0,indexOfY) + "ay"
         }
 
 
